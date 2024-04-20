@@ -1,0 +1,90 @@
+<%= form_with(model: person, remote: true) do |form| %>
+  <div id="error_explanation" hidden>
+    <h2 id="messages_title"> </h2>
+    <ul>    
+      <li id='messages'>
+      </li>
+    </ul>
+  </div>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :cpf %>
+    <%= form.text_field :cpf %>
+  </div>
+
+  <div class="field">
+    <%= form.label :birth_date %>
+    <%= form.date_select :birth_date %>
+  </div>
+
+  <%= form.fields_for :address do |ff| %>
+    <div class="field">
+      <%= ff.label :street %>
+      <%= ff.text_field :street %>
+    </div>
+  <% end %>
+  
+  <%= form.fields_for :phones do |ff| %>
+    <div class="field">
+      <%= ff.label :number %>
+      <%= ff.number_field :number,step: 0, min:0 %>
+    </div>
+
+    <% unless ff.object.nil? || ff.object.new_record? %>
+      <div class="form-field">
+        <%= ff.label :destroy%>
+        <%= ff.check_box :_destroy %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :salary %>
+    <%= form.number_field :salary, step: 0.01, min:0 %>
+  </div>
+
+  <div class="field">
+    <%= form.label :discount %>
+    <%= form.number_field :discount, step: 0.01, min:0, disabled:true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tax %>
+    <%= form.text_field :salary_tax, disabled:true %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Save', id: "btn_submit", class:"btn btn-primary" %>
+  </div>
+<% end %>
+
+<script>
+
+$(function () {
+  $( "#person_salary" ).on( "blur", function() {
+      $('input[type=submit]').click();
+  } );
+
+});
+
+function set_attributes_form(errors, messages, person_discount, person_salary_tax, person_name) {
+
+  document.getElementById("error_explanation").removeAttribute("hidden");
+
+  if(parseInt(errors) > 0){
+    document.getElementById("messages_title").textContent = errors + " Error(s):";
+    document.getElementById("messages").textContent = messages;
+  }else{
+    document.getElementById('person_discount').setAttribute("value", person_discount);
+    document.getElementById('person_salary_tax').setAttribute("value", person_salary_tax);
+    document.getElementById("messages").textContent = "O "+ person_name + " foi registrado com sucesso !";
+    document.getElementById("btn_submit").style.visibility = "hidden";
+  }
+}
+
+</script>

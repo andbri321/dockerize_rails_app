@@ -1,0 +1,10 @@
+$(function () {
+    var errors = '<%= @person.errors.count %>';
+    <% msgs='' ; @person.errors.full_messages.each{|message| msgs << "#{message} | " ; } %>;
+    var messages = "<%= msgs[0...-2]; %>";
+    var person_discount = '<%= @person.discount %>';
+    var person_salary_tax = '<%= @person.salary_tax %>';
+    var person_name = '<%= @person.name %>';
+
+    set_attributes_form(errors, messages, person_discount, person_salary_tax,person_name);
+});
