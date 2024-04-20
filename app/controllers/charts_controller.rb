@@ -3,21 +3,21 @@
 class ChartsController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-    @person_tax_7_5 = Person.where(salary_tax:"7.5%")
-    @salary_tax_7_5 = @person_tax_7_5.count
-    @discount_7_5 = @person_tax_7_5.sum(:discount).to_f
+  def index # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
+    @persontax75 = Person.category1
+    @salarytax75 = @persontax75.count
+    @discount75 = @persontax75.sum(:discount).to_f
 
-    @person_tax_9 = Person.where(salary_tax:"9%")
-    @salary_tax_9 = @person_tax_9.count
-    @discount_9 = @person_tax_9.sum(:discount).to_f
+    @persontax9 = Person.category2
+    @salarytax9 = @persontax9.count
+    @discount9 = @persontax9.sum(:discount).to_f
 
-    @person_tax_12 = Person.where(salary_tax:"12%")
-    @salary_tax_12 = @person_tax_12.count
-    @discount_12 = @person_tax_12.sum(:discount).to_f
-    
-    @person_tax_14 = Person.where(salary_tax:"14%")
-    @salary_tax_14 = @person_tax_14.count
-    @discount_14 = @person_tax_14.sum(:discount).to_f
+    @persontax12 = Person.category3
+    @salarytax12 = @persontax12.count
+    @discount12 = @persontax12.sum(:discount).to_f
+
+    @persontax14 = Person.category4
+    @salarytax14 = @persontax14.count
+    @discount14 = @persontax14.sum(:discount).to_f
   end
 end

@@ -10,9 +10,16 @@ class Person < ApplicationRecord
   validates :name, presence: true
   validate :cpf_validation
 
+  scope :category1, -> { where(salary_tax: '7.5%') }
+  scope :category2, -> { where(salary_tax: '9%') }
+  scope :category3, -> { where(salary_tax: '12%') }
+  scope :category4, -> { where(salary_tax: '14%') }
+
+  private
+
   def cpf_validation
-    if cpf.present? && !::CPF.valid?(cpf)
-      errors.add(:cpf, "invalido")
-    end  
+    return unless cpf.present? && !::CPF.valid?(cpf)
+
+    errors.add(:cpf, 'invalido')
   end
 end

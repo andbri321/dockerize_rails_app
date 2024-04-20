@@ -33,9 +33,9 @@
       <div class="col-sm-3">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title"> Categoria 1 (<%= @salary_tax_7_5 %>) </h5>
+            <h5 class="card-title"> Categoria 1 (<%= @salarytax75 %>) </h5>
             <p class="card-text">
-              <% @person_tax_7_5 && @person_tax_7_5[0..4].each do |person| %>
+              <% @person_tax75 && @persontax75[0..4].each do |person| %>
                 <li><%= person.name %></li>
               <% end %>
               </ul>
@@ -48,9 +48,9 @@
       <div class="col-sm-3">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title"> Categoria 2 (<%= @salary_tax_9 %>) </h5>
+            <h5 class="card-title"> Categoria 2 (<%= @salarytax9 %>) </h5>
             <p class="card-text">
-              <% @person_tax_9 && @person_tax_9[0..4].each do |person| %>
+              <% @persontax9 && @persontax9[0..4].each do |person| %>
                 <li><%= person.name %></li>
               <% end %>
             </p>
@@ -62,9 +62,9 @@
       <div class="col-sm-3">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title"> Categoria 3 (<%= @salary_tax_12 %>) </h5>
+            <h5 class="card-title"> Categoria 3 (<%= @salarytax12 %>) </h5>
             <p class="card-text">
-              <% @person_tax_12 && @person_tax_12[0..4].each do |person| %>
+              <% @persontax12 && @persontax12[0..4].each do |person| %>
                 <li><%= person.name %></li>
               <% end %>
             </p>
@@ -76,9 +76,9 @@
       <div class="col-sm-3">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title"> Categoria 4 (<%= @salary_tax_14 %>) </h5>
+            <h5 class="card-title"> Categoria 4 (<%= @salarytax14 %>) </h5>
             <p class="card-text">
-              <% @person_tax_14 && @person_tax_14[0..4].each do |person| %>
+              <% @persontax14 && @persontax14[0..4].each do |person| %>
                 <li><%= person.name %></li>
               <% end %>
             </p>
@@ -96,10 +96,8 @@
 
   const person_chart = document.getElementById('personChart');
   const discount_chart = document.getElementById('discountChart');
-  var data = [<%= @salary_tax_7_5 %>,<%= @salary_tax_9 %>,<%= @salary_tax_12 %>,<%= @salary_tax_14 %>];
+  var data = [<%= @salarytax75 %>,<%= @salary_tax9 %>,<%= @salarytax12 %>,<%= @salarytax14 %>];
   var chart_labels = ['Category 1', 'Category 2', 'Category 3', 'Category 4'];
-  console.log('<%= @salary_tax_7_5 %>');
-  console.log(data);
 
   new Chart(person_chart, {
     type: 'bar',
@@ -123,7 +121,7 @@
     }
   });
 
-  var discount_data = [<%= @discount_7_5 %>,<%= @discount_9 %>,<%= @discount_12 %>,<%= @discount_14 %>];
+  var discount_data = [<%= @discount75 %>,<%= @discount9 %>,<%= @discount12 %>,<%= @discount14 %>];
 
   new Chart(discount_chart, {
     type: 'bar',
