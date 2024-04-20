@@ -1,9 +1,8 @@
 # frozen_string_literal: true
 
 module InssManager
-  # InssTax service
   class InssTax < ApplicationService
-    def initialize(salary)
+    def initialize(salary) # rubocop:disable Lint/MissingSuper
       @salary = salary.to_d
     end
 

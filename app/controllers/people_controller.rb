@@ -8,13 +8,13 @@ class PeopleController < ApplicationController
 
   # GET /people or /people.json
   def index
-    filter_by = ["7.5%","9%","12%","14%"]
+    filter_by = ['7.5%', '9%', '12%', '14%']
 
-    if params[:category]
-      @people = Person.where(salary_tax:filter_by[params[:category].to_i-1]).order(:name).page params[:page]
-    else
-      @people = Person.order(:name).page params[:page]
-    end
+    @people = if params[:category]
+                Person.where(salary_tax: filter_by[params[:category].to_i - 1]).order(:name).page params[:page]
+              else
+                Person.order(:name).page params[:page]
+              end
   end
 
   # GET /people/1 or /people/1.json
@@ -37,9 +37,7 @@ class PeopleController < ApplicationController
   def create
     @person = Person.new(person_params.merge(@inss_tax_hash))
     @person.save
-    respond_to do |format|
-      format.js
-    end
+    respond_to(&:js)
   end
 
   # PATCH/PUT /people/1 or /people/1.json
@@ -55,7 +53,7 @@ class PeopleController < ApplicationController
     @person.destroy
 
     respond_to do |format|
-      format.html { redirect_to people_url, notice: 'Person was successfully destroyed.' }
+      format.html { redirect_to people_url, notice: 'Person was successfully destroyed.' } # rubocop:disable Rails/I18nLocaleTexts
     end
   end
 
@@ -73,7 +71,7 @@ class PeopleController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def person_params
-    params.require(:person).permit(:name, :cpf, :birth_date, :salary,:category,
+    params.require(:person).permit(:name, :cpf, :birth_date, :salary, :category,
                                    address_attributes: %i[id street number neighborhood city person _destroy],
                                    phones_attributes: %i[id number _destroy])
   end

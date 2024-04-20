@@ -1,0 +1,147 @@
+<div class="card">
+  <div class="card-header">
+    Dashboard
+  </div>
+  <div class="card-body" >
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"> Quantidade de Contribuintes </h5>
+            <p class="card-text">
+              <canvas id="personChart"></canvas>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"> Valor Arrecadado por Categoria</h5>
+              <canvas id="discountChart"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card">
+
+  <div class="card-body" >
+    <div class="row">
+      <div class="col-sm-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"> Categoria 1 (<%= @salarytax75 %>) </h5>
+            <p class="card-text">
+              <% @person_tax75 && @persontax75[0..4].each do |person| %>
+                <li><%= person.name %></li>
+              <% end %>
+              </ul>
+            </p>
+            <%= link_to 'Lista completa', people_path(category:1) , class:"btn btn-link" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"> Categoria 2 (<%= @salarytax9 %>) </h5>
+            <p class="card-text">
+              <% @persontax9 && @persontax9[0..4].each do |person| %>
+                <li><%= person.name %></li>
+              <% end %>
+            </p>
+            <%= link_to 'Lista completa', people_path(category:2) , class:"btn btn-link" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"> Categoria 3 (<%= @salarytax12 %>) </h5>
+            <p class="card-text">
+              <% @persontax12 && @persontax12[0..4].each do |person| %>
+                <li><%= person.name %></li>
+              <% end %>
+            </p>
+            <%= link_to 'Lista completa', people_path(category:3) , class:"btn btn-link" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"> Categoria 4 (<%= @salarytax14 %>) </h5>
+            <p class="card-text">
+              <% @persontax14 && @persontax14[0..4].each do |person| %>
+                <li><%= person.name %></li>
+              <% end %>
+            </p>
+            <%= link_to 'Lista completa', people_path(category:4) , class:"btn btn-link" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+
+  const person_chart = document.getElementById('personChart');
+  const discount_chart = document.getElementById('discountChart');
+  var data = [<%= @salarytax75 %>,<%= @salary_tax9 %>,<%= @salarytax12 %>,<%= @salarytax14 %>];
+  var chart_labels = ['Category 1', 'Category 2', 'Category 3', 'Category 4'];
+
+  new Chart(person_chart, {
+    type: 'bar',
+    data: {
+      labels: chart_labels,
+      datasets: [{
+        label: 'Contribuintes',
+        data: data,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          min: 5,
+          max: 25,
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  var discount_data = [<%= @discount75 %>,<%= @discount9 %>,<%= @discount12 %>,<%= @discount14 %>];
+
+  new Chart(discount_chart, {
+    type: 'bar',
+    data: {
+      labels: chart_labels,
+      datasets: [{
+        label: 'Contribuintes',
+        data: discount_data,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      scales: {
+        y: {
+          min: 50,
+          max: 250,
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
