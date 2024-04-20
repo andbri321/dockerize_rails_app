@@ -4,6 +4,7 @@ require 'spec_helper'
 require 'spec_helper'
 require 'simplecov'
 require 'simplecov_json_formatter'
+require "shoulda/matchers"
 
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter.new([
   SimpleCov::Formatter::JSONFormatter,
@@ -49,6 +50,11 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
+RSpec.configure do |config|
+  config.include Devise::Test::ControllerHelpers, type: :controller
+end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -90,4 +96,5 @@ RSpec.configure do |config|
       with.library :rails
     end
   end
+
 end

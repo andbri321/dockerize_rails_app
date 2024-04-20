@@ -1,0 +1,25 @@
+
+<div class="card" style="width: 18rem;">
+  <div class="card-header">
+    <h1> Página Principal </h1>
+  </div>
+  <ul class="list-group list-group-flush">
+    <% if user_signed_in? %>
+      <li class="list-group-item">
+        <%= link_to 'Sair',  destroy_user_session_path, method: :delete %>
+      </li>
+    <% else %>
+      <li class="list-group-item">
+        <%= link_to 'Cadastro de novo usuário',  new_user_registration_path %>
+      </li>
+      <li class="list-group-item">
+        <%= link_to 'Logar',  new_user_session_path %>
+      </li>
+    <% end %>
+
+    <li class="list-group-item">
+      <%= link_to 'Charts',  charts_path %>
+    </li>
+
+  </ul>
+</div>
