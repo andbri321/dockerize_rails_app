@@ -2,6 +2,15 @@
 # Change Log
 All notable changes to this project will be documented in this file.
 
+## [1.3] - 2024-04-20
+ 
+### Added
+- [Task 14](http://tickets/)
+  Feature Chart
+
+### Changed
+ 
+### Fixed
  
 ## [1.2] - 2024-04-20
  

@@ -81,6 +81,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.2.3)
     connection_pool (2.4.1)
+    cpf_cnpj (0.5.0)
     crass (1.0.6)
     date (3.3.4)
     devise (4.9.4)
@@ -282,6 +283,7 @@ DEPENDENCIES
   capybara
   chart-js-rails
   coffee-rails (~> 4.2)
+  cpf_cnpj
   devise
   faker
   jbuilder (~> 2.5)
